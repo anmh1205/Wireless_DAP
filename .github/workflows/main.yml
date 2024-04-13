@@ -29,16 +29,16 @@ jobs:
       if: matrix.target-hardware == 'esp8266'
       run: |
         sudo apt update
-        sudo apt install -y gcc git wget make libncurses-dev flex bison python python-setuptools python3-serial ninja-build
+        sudo apt install -y gcc git wget make libncurses-dev flex bison python3 python3-setuptools python3-serial ninja-build
         wget https://dl.espressif.com/dl/xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
-        curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
-        python get-pip.py
+        curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+        python3 get-pip.py
 
     - name: install
       if: matrix.target-hardware == 'esp8266'
       run: |
         tar -xzf ./xtensa-lx106-elf-linux64-1.22.0-100-ge567ec7-5.2.0.tar.gz
-        python -m pip install --user -r ./ESP8266_RTOS_SDK/requirements.txt
+        python3 -m pip install --user -r ./ESP8266_RTOS_SDK/requirements.txt
 
     - name: script
       id: script
